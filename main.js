@@ -46,22 +46,26 @@ function makeUrl(citation) {
   return citation.match;
 }
 
-safeConverter.hooks.chain("preConversion", function (text) {
-  var citations = Citation.find(text).citations;
+function addCitationLinkerToConverter(converter) {
+  converter.hooks.chain("preConversion", function (text) {
+    var citations = Citation.find(text).citations;
 
-  // exit if no citations are found
-  if (citations.length === 0) {
+    // exit if no citations are found
+    if (citations.length === 0) {
+      return text;
+    }
+
+    // loop through citations, match text, and replace with markdown links
+    for (var i=0,len=citations.length; i<len; i++) { 
+      var match = citations[i].match;
+      text = text.replace(match, "[" + match + "]" + "(" + makeUrl(citations[i]) + ")");
+    }
+
     return text;
-  }
+  });
+}
 
-  // loop through citations, match text, and replace with markdown links
-  for (var i=0,len=citations.length; i<len; i++) { 
-    var match = citations[i].match;
-    text = text.replace(match, "[" + match + "]" + "(" + makeUrl(citations[i]) + ")");
-  }
-
-  return text;
-});
+addCitationLinkerToConverter(safeConverter);
 
 var text = 
   [
