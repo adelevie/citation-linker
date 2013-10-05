@@ -2,7 +2,7 @@
   "name": "pagedown-up",
   "version": "0.0.0",
   "description": "",
-  "main": "foo.js",
+  "main": "lib/citation-linker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
