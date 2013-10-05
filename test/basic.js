@@ -1,7 +1,7 @@
 citationLinker = require('../lib/citation-linker')
 
 var pagedown = require("pagedown");
-require("citation");
+//require("citation");
 var safeConverter = pagedown.getSanitizingConverter();
 
 citationLinker.addCitationLinkerToConverter(safeConverter);
