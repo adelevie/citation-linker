@@ -64,6 +64,8 @@ Output:
 
 And here's the same output nicely formatted:
 
+<hr />
+
 <ul>
 <li>A simple</li>
 <li>markdown</li>
@@ -85,3 +87,32 @@ And here's the same output nicely formatted:
 <h3>Excerpt from <em>In re Application of U.S. for an Order Pursuant to <a href="http://www.law.cornell.edu/uscode/text/18/2705">18 U.S.C. § 2705</a></em></h3>
 
 <p>The United States argues, however, that the explicit command of Rule 6(e)(2) is trumped by <a href="http://www.law.cornell.edu/uscode/text/18/2705">18 U.S.C. § 2705(b)</a>. The Court does not agree. Certainly section 2705 does not contain an explicit overruling of Rule 6(e)(2); it does not mention the rule at all. In the Court's view, the statute cannot properly be read as authorizing the Court to enjoin a provider from revealing that it has received a grand jury subpoena. Section 2705 is entitled “Delayed Notice,” and by its terms addresses only disclosures made under section 2703(b), which concern applications to obtain the contents of electronic communications, not applications for subscriber information under section 2703(c).</p>
+
+<hr />
+
+### Running separetely from Pagedown
+
+```javascript
+citationLinker = require("citation-linker");
+
+var text = 
+  [
+    "The United States argues, however, that the explicit command of Rule 6(e)(2) is trumped by 18 U.S.C. § 2705(b). The Court does not agree. Certainly section 2705 does not contain an explicit overruling of Rule 6(e)(2); it does not mention the rule at all. In the Court's view, the statute cannot properly be read as authorizing the Court to enjoin a provider from revealing that it has received a grand jury subpoena. Section 2705 is entitled “Delayed Notice,” and by its terms addresses only disclosures made under section 2703(b), which concern applications to obtain the contents of electronic communications, not applications for subscriber information under section 2703(c)."
+  ].join('\n');
+
+var output = citationLinker.addCitationLinks(text);
+
+console.log(output);
+```
+
+Output:
+
+```markdown
+The United States argues, however, that the explicit command of Rule 6(e)(2) is trumped by [18 U.S.C. § 2705(b)](http://www.law.cornell.edu/uscode/text/18/2705). The Court does not agree. Certainly section 2705 does not contain an explicit overruling of Rule 6(e)(2); it does not mention the rule at all. In the Court's view, the statute cannot properly be read as authorizing the Court to enjoin a provider from revealing that it has received a grand jury subpoena. Section 2705 is entitled “Delayed Notice,” and by its terms addresses only disclosures made under section 2703(b), which concern applications to obtain the contents of electronic communications, not applications for subscriber information under section 2703(c).
+```
+
+Nicely formatted:
+
+<hr />
+
+The United States argues, however, that the explicit command of Rule 6(e)(2) is trumped by [18 U.S.C. § 2705(b)](http://www.law.cornell.edu/uscode/text/18/2705). The Court does not agree. Certainly section 2705 does not contain an explicit overruling of Rule 6(e)(2); it does not mention the rule at all. In the Court's view, the statute cannot properly be read as authorizing the Court to enjoin a provider from revealing that it has received a grand jury subpoena. Section 2705 is entitled “Delayed Notice,” and by its terms addresses only disclosures made under section 2703(b), which concern applications to obtain the contents of electronic communications, not applications for subscriber information under section 2703(c).
