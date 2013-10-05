@@ -5,14 +5,14 @@ var safeConverter = pagedown.getSanitizingConverter();
 
 /*  supported types. from: https://github.com/unitedstates/citation/blob/master/citation.js#L220-L229
 
-    Citation.types.usc = require("./citations/usc");
-    Citation.types.law = require("./citations/law");
-    Citation.types.cfr = require("./citations/cfr");
-    Citation.types.va_code = require("./citations/va_code");
-    Citation.types.dc_code = require("./citations/dc_code");
-    Citation.types.dc_register = require("./citations/dc_register");
-    Citation.types.dc_law = require("./citations/dc_law");
-    Citation.types.stat = require("./citations/stat");
+    Citation.types.usc = require("./citations/usc");                  // yes
+    Citation.types.law = require("./citations/law");                  // todo
+    Citation.types.cfr = require("./citations/cfr");                  // yes
+    Citation.types.va_code = require("./citations/va_code");          // todo
+    Citation.types.dc_code = require("./citations/dc_code");          // yes
+    Citation.types.dc_register = require("./citations/dc_register");  // todo
+    Citation.types.dc_law = require("./citations/dc_law");            // todo
+    Citation.types.stat = require("./citations/stat");                // todo
 
 */
 
@@ -31,16 +31,6 @@ function makeCfrUrl(citation) {
 }
 
 function makeDcCodeUrl(citation) {
-  console.log(citation);
-
-  /*
-  dc_code: 
-   { title: '3',
-     section: '1201.01',
-     subsections: [],
-     id: 'dc-code/3/1201.01',
-     section_id: 'dc-code/3/1201.01' } }
-  */
   var dc_code = citation.dc_code;
   var title = dc_code.title;
   var section = dc_code.section;
@@ -57,18 +47,14 @@ function makeUrl(citation) {
 }
 
 safeConverter.hooks.chain("preConversion", function (text) {
-
   var citations = Citation.find(text).citations;
 
-  /*
+  // exit if no citations are found
   if (citations.length === 0) {
-    console.log("no citations found");
-  } else {
-    console.log("found a cite!");
+    return text;
   }
-  */
 
-  var newText = ""
+  // loop through citations, match text, and replace with markdown links
   for (var i=0,len=citations.length; i<len; i++) { 
     var match = citations[i].match;
     text = text.replace(match, "[" + match + "]" + "(" + makeUrl(citations[i]) + ")");
