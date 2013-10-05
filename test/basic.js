@@ -4,7 +4,7 @@ var pagedown = require("pagedown");
 //require("citation");
 var safeConverter = pagedown.getSanitizingConverter();
 
-citationLinker.addCitationLinkerToConverter(safeConverter);
+citationLinker.addCitationLinkerToPagedownConverter(safeConverter);
 
 var text = 
   [

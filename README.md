@@ -10,4 +10,6 @@ $ npm install citation-linker
 
 ```javascript
 citationLinker = require("citation-linker");
+
+
 ```
