@@ -1,12 +1,12 @@
 {
   "name": "citation-linker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/citation-linker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
+  "repository": "https://github.com/adelevie/citation-linker",
   "author": "Alan deLevie",
   "license": "BSD",
   "dependencies": {
